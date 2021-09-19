@@ -6,17 +6,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-//@SpringBootTest(classes = {SpringBootDemoApplication.class})
-@SpringBootTest
-class SpringBootDemoApplicationTests {
-
-    @Test
-    void contextLoads() {
-    }
-
-    @Test
-    public void testFormat(){
-
-    }
+@SpringBootTest(classes = {SpringBootDemoApplication.class})
+//@SpringBootTest
+public class SpringBootDemoApplicationTests {
 
 }
