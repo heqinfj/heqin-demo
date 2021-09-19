@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean name="ph1" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:placeholder/jdbc.properties" />
+    </bean>
+
+    <bean name="ph2" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:placeholder/jdbc2.properties" />
+    </bean>
+
+    <bean class="com.heqin.placeholder.xml.DataSource">
+        <property name="userName" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+    </bean>
+</beans>
