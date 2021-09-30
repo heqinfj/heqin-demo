@@ -11,6 +11,11 @@
 
     <artifactId>java8-demo</artifactId>
 
+    <properties>
+        <slf4j.version>1.7.25</slf4j.version>
+        <logback.version>1.2.3</logback.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -22,6 +27,38 @@
             <artifactId>junit</artifactId>
             <version>4.13</version>
         </dependency>
+
+        <!--
+        项目中有多种日志框架时会存在多个StaticLoggerBinder时候获取第一个，主要是采用类的顺序加载机制，与pom文件中依赖的填写顺序有关（个人实践得到）。
+        https://www.cnblogs.com/zhouguanglin/p/13804013.html
+        -->
+
+        <!-- slf4j绑定logback日志框架 https://www.cnblogs.com/sinte-beuve/p/5758971.html -->
+        <!-- slf4j是日志接口 -->
+        <!-- slf4j-api 不需要明确引用，引用logback-classic时就会关联引入
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        -->
+        <!-- logback是具体实现了的日志框架 -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- slf4j绑定log4j日志框架 -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+
+
     </dependencies>
 
 </project>
