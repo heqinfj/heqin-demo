@@ -1,0 +1,12 @@
+### 需要一个.gitignore文件来防止一些IDEA自动生成的代码被提交到Git仓库去 ###
+# Maven #
+target/
+
+# IDEA #
+.idea/
+*.iml
+
+# Eclipse #
+.settings/
+.classpath
+.project
