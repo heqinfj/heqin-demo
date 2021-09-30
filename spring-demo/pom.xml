@@ -45,24 +45,30 @@
             <version>3.3.0</version>
         </dependency>
 
-        <!-- logback  参照SpringBoot的依赖配置 2.3.7.RELEASE -->
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-            <version>${logback.version}</version>
-            <scope>compile</scope>
-        </dependency>
+        <!-- slf4j绑定logback日志框架 https://www.cnblogs.com/sinte-beuve/p/5758971.html -->
+        <!-- slf4j是日志接口 -->
+        <!-- slf4j-api 不需要明确引用，引用logback-classic时就会关联引入
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
             <scope>compile</scope>
         </dependency>
+        -->
+        <!-- logback是具体实现了的日志框架 -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
             <scope>compile</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.16</version>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 

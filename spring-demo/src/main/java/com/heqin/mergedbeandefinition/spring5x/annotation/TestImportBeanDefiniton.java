@@ -30,7 +30,7 @@ public class TestImportBeanDefiniton implements ImportBeanDefinitionRegistrar {
         //父 BeanDefintion
         GenericBeanDefinition parentBeanDefinition = new GenericBeanDefinition();
         parentBeanDefinition.setBeanClass(TestBean.class);
-        parentBeanDefinition.getPropertyValues().add("name","parent").add("age",1);
+        parentBeanDefinition.getPropertyValues().add("name","parent").add("age",1).add("desc","测试ing...");
         registry.registerBeanDefinition("inheritedTestBean",parentBeanDefinition);
 
         //子 BeanDefintion
@@ -49,7 +49,12 @@ public class TestImportBeanDefiniton implements ImportBeanDefinitionRegistrar {
         //父 BeanDefintion
         RootBeanDefinition parentBeanDefinition = new RootBeanDefinition();
         parentBeanDefinition.setBeanClass(TestBean.class);
-        parentBeanDefinition.getPropertyValues().add("name","parent").add("age",1);
+        parentBeanDefinition.getPropertyValues().add("name","parent")
+                .add("age",1)
+                .add("desc","测试ing...");
+        //上面getPropertyValues.add("xxx","yyy");xxx属性需要有相应的setter方法，否则会有异常：
+        //Caused by: org.springframework.beans.NotWritablePropertyException: Invalid property 'desc' of bean class [com.heqin.mergedbeandefinition.spring5x.beans.TestBean]:
+        //Bean property 'desc' is not writable or has an invalid setter method. Does the parameter type of the setter match the return type of the getter?
         registry.registerBeanDefinition("inheritedTestBean",parentBeanDefinition);
 
         //子 BeanDefintion

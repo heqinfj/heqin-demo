@@ -14,6 +14,8 @@ public class TestBean {
 
     private boolean destroyed;
 
+    private String remark;
+
     public String getBeanName() {
         return beanName;
     }
@@ -46,11 +48,18 @@ public class TestBean {
         return destroyed;
     }
 
+    public void setDesc(String desc){
+        this.remark = desc;
+    }
+
     @Override
     public String toString() {
         return "TestBean{" +
-                "name='" + name + '\'' +
+                "name='" + name +
+                '\'' +
                 ", age=" + age +
+                '\'' +
+                ", remark=" + remark +
                 '}';
     }
 }
