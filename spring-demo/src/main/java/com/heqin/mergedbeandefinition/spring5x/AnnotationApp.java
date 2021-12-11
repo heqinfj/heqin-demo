@@ -26,19 +26,22 @@ public class AnnotationApp {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(AnnotationApp.class);
         DefaultListableBeanFactory beanFactory = applicationContext.getDefaultListableBeanFactory();
-//        System.out.println("Bean定义：");
-//        BeanDefinition inheritedTestBeanBd = beanFactory.getMergedBeanDefinition("inheritedTestBean");
-//        BeanDefinition inheritsWithDifferentClassBd = beanFactory.getBeanDefinition("inheritsWithDifferentClass");
-//        BeanDefinition inheritsWithDifferentClassMbd = beanFactory.getMergedBeanDefinition("inheritsWithDifferentClass");
-//        System.out.println("inheritedTestBeanBd: " + inheritedTestBeanBd);
-//        System.out.println("inheritsWithDifferentClassBd: " + inheritsWithDifferentClassBd);
-//        System.out.println("inheritsWithDifferentClassMbd: " + inheritsWithDifferentClassMbd);
-
+        //父类
+        BeanDefinition inheritedTestBeanBd = beanFactory.getBeanDefinition("inheritedTestBean");
+        BeanDefinition inheritedTestBeanMbd = beanFactory.getMergedBeanDefinition("inheritedTestBean");
+        //子类
+        BeanDefinition inheritsWithDifferentClassBd = beanFactory.getBeanDefinition("inheritsWithDifferentClass");
+        BeanDefinition inheritsWithDifferentClassMbd = beanFactory.getMergedBeanDefinition("inheritsWithDifferentClass");
+        System.out.println("Bean定义：");
+        System.out.println("    inheritedTestBeanBd:           " + inheritedTestBeanBd);
+        System.out.println("    inheritedTestBeanMbd:          " + inheritedTestBeanMbd);
+        System.out.println("    inheritsWithDifferentClassBd:  " + inheritsWithDifferentClassBd);
+        System.out.println("    inheritsWithDifferentClassMbd: " + inheritsWithDifferentClassMbd);
 
         System.out.println("Bean实例：");
         TestBean testBean = (TestBean)applicationContext.getBean("inheritedTestBean");
         DerivedTestBean derivedTestBean = (DerivedTestBean) applicationContext.getBean("inheritsWithDifferentClass");
-        System.out.println("inheritedTestBean: " + testBean);
-        System.out.println("inheritsWithDifferentClass: " + derivedTestBean);
+        System.out.println("    inheritedTestBean:              " + testBean);
+        System.out.println("    inheritsWithDifferentClass:     " + derivedTestBean);
     }
 }

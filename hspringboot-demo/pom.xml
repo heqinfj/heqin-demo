@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>heqin-demo</artifactId>
+        <groupId>com.heqin</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>hspringboot-demo</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>demo-bootstrap</module>
+        <module>demo-module1</module>
+        <module>demo-module2</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <spring-boot.version>2.3.7.RELEASE</spring-boot.version>
+        <hspringboot.version>1.0.0-SNAPSHOT</hspringboot.version>
+        <hthreadpool-spring-boot-starter.version>1.0.0-SNAPSHOT</hthreadpool-spring-boot-starter.version>
+    </properties>
+
+    <dependencyManagement>
+        <!--        <dependencies>-->
+        <!--            <dependency>-->
+        <!--                <groupId>org.springframework.boot</groupId>-->
+        <!--                <artifactId>spring-boot-starter-parent</artifactId>-->
+        <!--                <version>${spring-boot.version}</version>-->
+        <!--                <type>pom</type>-->
+        <!--                <scope>import</scope>-->
+        <!--            </dependency>-->
+        <!--        </dependencies>-->
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope><!-- 按目前来看，需要设置为import，重要的 -->
+            </dependency>
+            <dependency>
+                <groupId>com.heqin</groupId>
+                <artifactId>demo-module1</artifactId>
+                <version>${hspringboot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.heqin</groupId>
+                <artifactId>demo-module2</artifactId>
+                <version>${hspringboot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.heqin</groupId>
+                <artifactId>hthreadpool-spring-boot-starter</artifactId>
+                <version>${hthreadpool-spring-boot-starter.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>

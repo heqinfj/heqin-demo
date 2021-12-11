@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 指定myTestBean为多例 -->
+    <bean name="myTestBean" class="com.heqin.flyweightpatterninspring.MyTestBean" scope="prototype">
+        <property name="name" value="JoJo"></property>
+        <property name="age" value="2"></property>
+    </bean>
+
+    <!-- singletonReferencePrototypeError 默认为单例 -->
+    <bean name="singletonReferencePrototypeError" class="com.heqin.flyweightpatterninspring.SingletonReferencePrototype">
+        <property name="myTestBean" ref="myTestBean"></property>
+
+    </bean>
+
+    <!-- singletonReferencePrototypeRight 默认为单例 -->
+    <bean name="singletonReferencePrototypeRight" class="com.heqin.flyweightpatterninspring.SingletonReferencePrototype">
+        <lookup-method name="getMyTestBean" bean="myTestBean"></lookup-method>
+    </bean>
+
+    <!-- myTestBeanUseScopedProxy 验证 scoped-proxy -->
+    <bean name="myTestBeanUseScopedProxy" class="com.heqin.flyweightpatterninspring.MyTestBean" scope="prototype">
+        <property name="name" value="JoJo"></property>
+        <property name="age" value="2"></property>
+        <!--告诉spring生成该类的时候使用 scoped-proxy -->
+        <aop:scoped-proxy/>
+    </bean>
+</beans>

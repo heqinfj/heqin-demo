@@ -47,7 +47,9 @@ public class TestImportBeanDefiniton implements ImportBeanDefinitionRegistrar {
      */
     private void demo02(BeanDefinitionRegistry registry){
         //父 BeanDefintion
-        RootBeanDefinition parentBeanDefinition = new RootBeanDefinition();
+        //观察 当使用 RootBeanDefinition 与 使用 GenericBeanDefinition 时，beanFactory.getBeanDefinition("parent") 输出的不同
+        //RootBeanDefinition parentBeanDefinition = new RootBeanDefinition();//使用 RootBeanDefinition
+        GenericBeanDefinition parentBeanDefinition = new GenericBeanDefinition();//使用 GenericBeanDefinition
         parentBeanDefinition.setBeanClass(TestBean.class);
         parentBeanDefinition.getPropertyValues().add("name","parent")
                 .add("age",1)

@@ -1,7 +1,9 @@
 package com.heqin.javabase;
 
+//import com.sun.org.apache.xpath.internal.operations.Or;
 import org.junit.Test;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
@@ -40,9 +42,8 @@ public class ClassApiExample {
 
     /**
      * @Desc getName()、getCanonicalName()、getSimpleName()、getTypeName()的区别
-     *
+     * <p>
      * https://stackoverflow.com/questions/15202997/what-is-the-difference-between-canonical-name-simple-name-and-class-name-in-jav/15203417#15203417
-     *
      * @Author heqin
      * @Date 2021/9/18 15:32
      */
@@ -82,7 +83,7 @@ public class ClassApiExample {
     }
 
     @Test
-    public void isMemberClass(){
+    public void isMemberClass() {
         printIsMemberClassForClass(
                 int.class,
                 "int.class (primitive - 基本类型)");
@@ -100,7 +101,7 @@ public class ClassApiExample {
         printIsMemberClassForClass((new int[3][4][5][6][7][8][9]).getClass(), "new int[3][4][5][6][7][8][9]).getClass() (multi-dimensional array - 多维数组类)");
     }
 
-    private void printIsMemberClassForClass(Class<?> clazz,String label){
+    private void printIsMemberClassForClass(Class<?> clazz, String label) {
         System.out.println("label: " + label);
         System.out.println(" isMemberClass(): " + clazz.isMemberClass());
     }
@@ -109,11 +110,11 @@ public class ClassApiExample {
      * getDeclaredMethods与getMethods的区别
      */
     @Test
-    public void getDeclaredMethodsAndGetMethods(){
-        printMethodsForClass(Animal.class,"com.heqin.javabase.ClassApiExample.Animal.class");
+    public void getDeclaredMethodsAndGetMethods() {
+        printMethodsForClass(Animal.class, "com.heqin.javabase.ClassApiExample.Animal.class");
     }
 
-    private void printMethodsForClass(Class<?> clazz,String label){
+    private void printMethodsForClass(Class<?> clazz, String label) {
         System.out.println(label + ":");
         System.out.println("    getDeclaredMethods():  ");
         Method[] declaredMethods = Animal.class.getDeclaredMethods();
@@ -123,80 +124,118 @@ public class ClassApiExample {
         Arrays.stream(methods).forEach(method -> System.out.println("       " + method));
     }
 
-    /**
-     * 生物
-     */
-    public class Organism {
+    @Test
+    public void getDeclaredConstructors_test() {
+        Constructor<?>[] declaredConstructors = Animal.class.getDeclaredConstructors();
+        System.out.println(Arrays.toString(declaredConstructors));
+    }
 
-        public void publicMethod() {
-            System.out.println("public 方法。。。");
-        }
-
-        protected void protectedMethod() {
-            System.out.println("protected 方法。。。");
-        }
-
-        void defaultPackageAccessMethod() {
-            System.out.println("default (package)access 方法。。。");
-        }
-
-        private void privateMethod() {
-            System.out.println("private 方法。。。");
-        }
+    @Test
+    public void cast(){
+        Object obj = "Hello World !";
+        String s = String.class.cast(obj);
+        System.out.println(s);
     }
 
     /**
-     * Animal
-     * 动物
+     * getClass() - 返回此Object的运行时类。 | 返回表示此对象的运行时类的Class对象。
      */
-    public class Animal extends Organism{
+    @Test
+    public void testGetClass() {
+        String str = "abc";
+        Class<? extends String> strClass = str.getClass();
+        System.out.println(strClass);//String对象的运行时类为：class java.lang.String
+        Class<? extends Class> strClassClass = strClass.getClass();
+        System.out.println(strClassClass);//class java.lang.String对象的运行时类为：class java.lang.Class
+        System.out.println(strClassClass.getClass());//class java.lang.Class对象的运行时类为：class java.lang.Class -- 后续都是这样
+        System.out.println("-------------------------------------");
+        Number n = 0;
+        Class<? extends Number> c = n.getClass();
+        System.out.println(c);//Integer对象的运行时类为：class java.lang.Integer
+        Class<? extends Class> cClass = c.getClass();
+        System.out.println(cClass);//class java.lang.Integer对象的运行时类为：class java.lang.Class
+        System.out.println(cClass.getClass());//class java.lang.Class对象的运行时类为：class java.lang.Class -- 后续都是这样
 
-        private void move(){
-            System.out.println("animal move...");
-        }
+    }
+}
+
+/**
+ * 生物
+ */
+class Organism {
+
+    protected Organism() {
 
     }
 
-    /**
-     * Mammal
-     * 哺乳动物
-     */
-    public class Mammal extends Animal {
+    public void publicMethod() {
+        System.out.println("public 方法。。。");
     }
 
-    /**
-     * Reptile
-     * 爬虫
-     */
-    public class Reptile extends Animal {
+    protected void protectedMethod() {
+        System.out.println("protected 方法。。。");
     }
 
-    /**
-     * Dog
-     * 狗
-     */
-    public class Dog extends Mammal {
+    void defaultPackageAccessMethod() {
+        System.out.println("default (package)access 方法。。。");
     }
 
-    /**
-     * behavior
-     * 行为
-     */
-    interface Behavior {
+    private void privateMethod() {
+        System.out.println("private 方法。。。");
+    }
+}
 
+/**
+ * Animal
+ * 动物
+ */
+class Animal extends Organism {
+
+    private void move() {
+        System.out.println("animal move...");
     }
 
-    /**
-     * 能游泳
-     */
-    interface SwimCapableBehavior extends Behavior {
+}
 
-    }
+/**
+ * Mammal
+ * 哺乳动物
+ */
+class Mammal extends Animal {
+}
 
-    /**
-     * 能奔跑
-     */
-    interface RunCapableBehavior extends Behavior {
+/**
+ * Reptile
+ * 爬虫
+ */
+class Reptile extends Animal {
+}
 
-    }
+/**
+ * Dog
+ * 狗
+ */
+class Dog extends Mammal {
+}
+
+/**
+ * behavior
+ * 行为
+ */
+interface Behavior {
+
+}
+
+/**
+ * 能游泳
+ */
+interface SwimCapableBehavior extends Behavior {
+
+}
+
+/**
+ * 能奔跑
+ */
+interface RunCapableBehavior extends Behavior {
+
 }

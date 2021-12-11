@@ -14,6 +14,11 @@
         <module>spring-demo</module>
         <module>heqinformat-spring-boot-starter</module>
         <module>design-demo</module>
+        <module>liaoxuefeng-learn-java-demo</module>
+        <module>effective-java-3rd</module>
+        <module>java-tutorials</module>
+        <module>hspringboot-demo</module>
+        <module>hthreadpool-spring-boot-starter</module>
     </modules>
 
     <build>
@@ -23,8 +28,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.2</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>11</source>
+                    <target>11</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>

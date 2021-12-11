@@ -36,6 +36,8 @@ public class InnerClassExample {
 
 class OuterClass {
 
+    private static String NAME = "OUTER";
+
     private String name;
 
     OuterClass(String name) {
@@ -54,6 +56,9 @@ class OuterClass {
      *
      */
     class InnerClassNotStatic {
+
+        //private static String staticProp;//编译报错：Static declarations in inner classes are not supported at language level '8'
+
         void hello() {
             System.out.println("Hello, " + OuterClass.this.name);
         }
@@ -63,8 +68,15 @@ class OuterClass {
      * 静态内部类：只是为了降低包的深度，方便类的使用，实现高内聚。静态内部类适用于不依赖于外部类，不用使用外在类的非静态属性和方法，只是为了方便管理类结构而定义。在创建静态内部类的时候，不需要外部类对象的引用。
      */
     static class InnerClassStatic{
+
+        //private static String staticProp;
+
+        public InnerClassStatic(){
+            System.out.println("InnerClassStatic...");
+        }
         void hello() {
-            System.out.println("静态内部类。。。");
+            System.out.println("hello: " + OuterClass.NAME);
+            //System.out.println("静态内部类。。。");
             //System.out.println("Hello, " + OuterClass.this.name);//编译出错：'com.heqin.yourbatman.innerclass.OuterClass.this' cannot be referenced from a static context
         }
     }

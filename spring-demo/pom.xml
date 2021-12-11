@@ -15,6 +15,7 @@
         <spring.framework.version>5.2.12.RELEASE</spring.framework.version>
         <slf4j.version>1.7.25</slf4j.version>
         <logback.version>1.2.3</logback.version>
+        <junit5.version>5.7.1</junit5.version>
     </properties>
 
     <dependencies>
@@ -33,11 +34,31 @@
             <artifactId>aspectjweaver</artifactId>
             <version>1.9.5</version>
         </dependency>
+        <!-- junit4 -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13</version>
         </dependency>
+
+        <!-- junit5 -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit5.version}</version>
+        </dependency>
+
+        <!--
+            junit-pioneer - JUnit 5 extension pack
+            https://stackoverflow.com/questions/46846503/properly-set-system-properties-in-junit-5
+            https://www.codenong.com/46846503/
+        -->
+        <dependency>
+            <groupId>org.junit-pioneer</groupId>
+            <artifactId>junit-pioneer</artifactId>
+            <version>1.5.0</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/cglib/cglib -->
         <dependency>
             <groupId>cglib</groupId>
@@ -69,6 +90,17 @@
             <artifactId>lombok</artifactId>
             <version>1.18.16</version>
             <optional>true</optional>
+        </dependency>
+
+        <!--
+        https://stackoverflow.com/questions/52701459/i-cant-use-postconstruct-and-postdestroy-with-java-11
+        请注意，@PostConstruct和@PreDestroy注释都是 Java EE 的一部分。由于 Java EE 在 Java 9 中已被弃用并在 Java 11 中删除，
+        我们必须添加一个额外的依赖项来使用这些注释：
+        -->
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>1.3.2</version>
         </dependency>
     </dependencies>
 

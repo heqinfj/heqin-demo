@@ -19,7 +19,9 @@ public class CustomerComplexObjectBeanDefinition implements ImportBeanDefinition
     @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
         //ImportBeanDefinitionRegistrar.super.registerBeanDefinitions(importingClassMetadata, registry);
-        BeanDefinition parent = new RootBeanDefinition(ComplexObject.class);
+        RootBeanDefinition parent = new RootBeanDefinition();//使用 RootBeanDefinition
+        //GenericBeanDefinition parent = new GenericBeanDefinition();//使用 GenericBeanDefinition
+        parent.setBeanClass(ComplexObject.class);
         Properties adminEmails = new Properties();
         adminEmails.put("administrator","administrator@example.com");
         adminEmails.put("support","support@example.com");

@@ -10,7 +10,7 @@
             </props>
         </property>
     </bean>
-    <bean id="child" parent="parent">
+    <bean id="child" class="com.heqin.mergedbeandefinition.spring3x.ComplexObject" parent="parent">
         <property name="adminEmails">
             <!-- the merge is specified on the child collection definition 在子集合定义上指定合并 -->
             <props merge="true">

@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 
 /**
+ * xml 启动
+ *
  * @Author heqin
  * @Date 2021/9/13 16:28
  */
@@ -16,13 +18,22 @@ public class MainXmlApp {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MainXmlApp.class);
         DefaultListableBeanFactory beanFactory = context.getDefaultListableBeanFactory();
-        BeanDefinition mbd = beanFactory.getMergedBeanDefinition("child");
-        Object adminEmails = mbd.getPropertyValues().get("adminEmails");
-        System.out.println("mdb: " + mbd);
-        BeanDefinition bd = beanFactory.getBeanDefinition("child");
-        System.out.println("bd: " + bd);
-        System.out.println("=======================================================");
-        ComplexObject child = (ComplexObject)beanFactory.getBean("child");
-        System.out.println(child);
+
+        //父类
+        BeanDefinition parentBd = beanFactory.getBeanDefinition("parent");
+        BeanDefinition parentMbd = beanFactory.getMergedBeanDefinition("parent");
+        //子类
+        BeanDefinition childBd = beanFactory.getBeanDefinition("child");
+        BeanDefinition childMdb = beanFactory.getMergedBeanDefinition("child");
+        Object adminEmails = childMdb.getPropertyValues().get("adminEmails");
+        System.out.println("Bean定义：");
+        System.out.println("    parentBd:   " + parentBd);
+        System.out.println("    parentMbd:  " + parentMbd);
+        System.out.println("    childBd:    " + childBd);
+        System.out.println("    childMdb:   " + childMdb);
+
+        System.out.println("Bean实例：");
+        ComplexObject childBean = (ComplexObject)beanFactory.getBean("child");
+        System.out.println("    childBean:  " + childBean);
     }
 }

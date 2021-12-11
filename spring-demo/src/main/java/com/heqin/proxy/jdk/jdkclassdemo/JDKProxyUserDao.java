@@ -1,7 +1,7 @@
 package com.heqin.proxy.jdk.jdkclassdemo;
 
 import com.heqin.proxy.dao.UserDao;
-import com.heqin.proxy.jdk.JdkDynamicProxyHelperTest;
+import com.heqin.proxy.jdk.JdkDynamicProxyHelperByJava8Test;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -9,7 +9,7 @@ import java.lang.reflect.Proxy;
 import java.lang.reflect.UndeclaredThrowableException;
 
 /**
- * 利用类{@link JdkDynamicProxyHelperTest}得到的JDK动态代理生成的class文件（JDKProxyUserDao.class）
+ * 利用类{@link JdkDynamicProxyHelperByJava8Test}得到的JDK动态代理生成的class文件（JDKProxyUserDao.class）
  * @Author heqin
  * @Date 2021/9/16 10:30
  */

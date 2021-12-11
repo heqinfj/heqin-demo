@@ -7,7 +7,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @ConfigurationProperties(prefix = FormatProperties.HEQIN_PREFIX)
 public class FormatProperties {
+
     public static final String HEQIN_PREFIX = "heqin.format";
+
     private String type;
 
     public String getType() {
