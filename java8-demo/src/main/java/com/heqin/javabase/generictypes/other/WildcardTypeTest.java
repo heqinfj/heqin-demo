@@ -1,4 +1,4 @@
-package com.heqin.javabase.generictypes;
+package com.heqin.javabase.generictypes.other;
 
 import com.heqin.javabase.generictypes.learnjavatype01.TypeTest;
 

@@ -1,4 +1,4 @@
-package com.heqin.javabase.generictypes;
+package com.heqin.javabase.generictypes.other;
 
 import java.util.ArrayList;
 import java.util.HashMap;

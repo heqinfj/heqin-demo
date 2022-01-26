@@ -16,7 +16,8 @@ public class TypeVariableTest{
 
     @Test
     public void testTypeVariable() throws NoSuchMethodException {
-        Method method = TypeVariableTest.class.getMethod("test",Object.class);
+        Method method = TypeVariableTest.class.getMethod("testType");
+        //Method method = TypeVariableTest.class.getMethod("test",Object.class);
         TypeVariable<?>[] typeVariables = method.getTypeParameters(); //返回泛型声明的 TypeVariable 数组
 
         for (int i = 0; i < typeVariables.length; i++) {
@@ -26,6 +27,7 @@ public class TypeVariableTest{
             boolean isSameObj = genericDeclaration.getTypeParameters()[i] == typeVariable; // true，是同一个对象
 
             System.out.println(TypeInfoUtils.getTypeInfo(typeVariable));
+            System.out.println("当前类型变量上限的Type数组：");
             for (Type type : bounds) {
                 System.out.println("    " + TypeInfoUtils.getTypeInfo(type));
             }

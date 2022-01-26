@@ -29,7 +29,8 @@ public class GenericArrayTypeTest {
     }
 
     // 只有第一个参数是【泛型数组】类型
-    public <T> void testType(T[] a1, String[] a2, List<T> a3) {
+    public <T> T testType(T[] a1, String[] a2, List<T> a3) {
+        return null;
     }
 
 }

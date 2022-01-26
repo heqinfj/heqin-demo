@@ -1,11 +1,11 @@
-package com.heqin.argstojar;
+package com.heqin.validatedemo.argstojar;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Properties;
 
-import static com.heqin.argstojar.Utils.*;
+//import static com.heqin.validatedemo.argstojar.Utils.*;
 
 /**
  * @Author heqin
@@ -27,17 +27,17 @@ public class ArgsToJarApplication {
      * Environment Variables
      */
     static void printEnvironmentVariables() {
-        printH("Environment Variables");
-        System.getenv().forEach((k, v) -> print(k + " " + filter(v)));
+        Utils.printH("Environment Variables");
+        System.getenv().forEach((k, v) -> Utils.print(k + " " + Utils.filter(v)));
     }
 
     /**
      * System Properties
      */
     static void printSystemProperties() {
-        printH("System Properties");
+        Utils.printH("System Properties");
         Properties properties = System.getProperties();
-        properties.forEach((k, v) -> print(k + " " + filter(v)));
+        properties.forEach((k, v) -> Utils.print(k + " " + Utils.filter(v)));
     }
 
     /**
@@ -46,9 +46,9 @@ public class ArgsToJarApplication {
      * @param args
      */
     static void printArguments(String[] args) {
-        printH("Arguments");
+        Utils.printH("Arguments");
         for (String arg : args) {
-            print(filter(arg));
+            Utils.print(Utils.filter(arg));
         }
     }
 

@@ -13,16 +13,21 @@ import javax.annotation.PreDestroy;
  * 根据代码演示，得出文字版结论：
  * 1. 构造函数是每个类最先执行的，这个时候，bean属性还没有被注入
  * 2. @PostConstruct优先于afterPropertiesSet执行：在这执行，属性已经完成了赋值（注入）
+ *
+ * 最终结论，spring中的Constructor、@PostConstruct、@Autowired、afterPropertiesSet的顺序为：
+ * Constructor（构造函数） > @Autowired > @PostConstruct > afterPropertiesSet
+ *
  * <p>
  * 输出结果：
  * ----> InitSequenceBean: 初始InitBeanTest的成员变量age为18
  * ----> InitSequenceBean: constructor: null
- * ----> InitSequenceBean: @PostConstruct: com.heqin.yourbatman.javavariableexeorder.javaavsspring.spring.bean.DemoService@4b8d604b
- * ----> InitSequenceBean: afterPropertiesSet: com.heqin.yourbatman.javavariableexeorder.javaavsspring.spring.bean.DemoService@4b8d604b
+ * ----> InitSequenceBean: @Autowired: com.heqin.yourbatman.javavariableexeorder.javaavsspring.spring.bean.DemoService@32115b28
+ * ----> InitSequenceBean: @PostConstruct: com.heqin.yourbatman.javavariableexeorder.javaavsspring.spring.bean.DemoService@32115b28
+ * ----> InitSequenceBean: afterPropertiesSet: com.heqin.yourbatman.javavariableexeorder.javaavsspring.spring.bean.DemoService@32115b28
  * ----> InitSequenceBean: onApplicationEvent
  * IOC容器初始化完成。。。
  * 准备销毁IOC容器。。。
- * ----> InitSequenceBean: @PreDestroy: com.heqin.yourbatman.javavariableexeorder.javaavsspring.spring.bean.DemoService@4b8d604b
+ * ----> InitSequenceBean: @PreDestroy: com.heqin.yourbatman.javavariableexeorder.javaavsspring.spring.bean.DemoService@32115b28
  * IOC容器销毁完成。。。
  *
  * @Author heqin
@@ -40,8 +45,15 @@ public class InitBeanTest implements InitializingBean, ApplicationListener<Conte
         return defaultAge;
     }
 
-    @Autowired
+    //@Autowired//为了测试验证bean属性被注入的时机，使用下面的自动装配方法来验证
     DemoService demoService;
+
+    //为了测试验证bean属性被注入的时机
+    @Autowired
+    private void setDemoService(DemoService demoService){
+        System.err.println("----> InitSequenceBean: @Autowired: " + demoService);
+        this.demoService = demoService;
+    }
 
     public InitBeanTest() {
         System.err.println("----> InitSequenceBean: constructor: " + demoService);

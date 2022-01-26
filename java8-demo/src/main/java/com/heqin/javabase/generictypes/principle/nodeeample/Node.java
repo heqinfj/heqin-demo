@@ -6,7 +6,7 @@ package com.heqin.javabase.generictypes.principle.nodeeample;
  */
 public class Node<T> {
 
-    private T data;
+    public T data;
 
     public Node(T data) {
         this.data = data;
